@@ -50,13 +50,19 @@
 				</section> 
 
 				<section>
+					<p><a href="https://github.com/fatagun/Testable-Software-Design-and-Unit-Testing">Presentation source code </a></p>
+
+					<p><a href="https://github.com/fatagun/FiratBank">Project Source code</a></p> 
+				</section>
+
+				<section>
 					<section>
 						<h5>What is unit testing?</h5>
 						<p>In computer programming, unit testing is a software testing method by which individual units of source code, sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures, are tested to determine whether they are fit for use.
 						<a href="https://en.wikipedia.org/wiki/Unit_testing">Wikipedia</a></p>
 					</section>
 					<section>
-						<p>Unit testing is breaking your software into pieces, and verifying their behaviour in isolation.</p>
+						<p>Unit testing is breaking the software into pieces, and verifying the behaviour in isolation.</p>
 					</section>
 				</section>
 
@@ -79,7 +85,7 @@
 					</section>
 
 					<section>
-						<p>Testing helps reduce effort and time of developing and maintaining our software.</p>
+						<p>Testing helps reduce effort and time of developing and maintaining software.</p>
 						<p>Fact: mainintaining software takes much more time and effort than developing it.</p>
 						<p>Even though there is time and effort cost associated to creating tests, they pay of in the long time and increase trust to the software.</p>
 					</section>
@@ -91,11 +97,10 @@
 					<section>
 						<p>Unit Testing can help educate developers. It can be considered as documentation.</p>
 						<p>If a developer wants to learn about a software, reading tests can help as much as reading documentation.</p>
-
 					</section>
 
 					<section>
-						<p>Unit Testing increases the trust and confidence in our software. </p> 
+						<p>Unit Testing increases the trust and confidence in the software. </p> 
 					</section> 
 				</section> 
 
@@ -119,7 +124,7 @@
 						<ul>
 							<li>functional</li>
 							<li>acceptance</li>
-							<li>smoke</li>
+							<li>smoke/happy paths</li>
 						</ul>
 					</section>
 
@@ -217,7 +222,7 @@ var userName = Environment.GetSecurity().GetLogin.GetUser().UserName;</code></pr
 					<h5>Arrange - Act - Assert</h5>
 					<p>
 						Arrange the subject under test.<br/>
-						Act in isolation<br/>
+						Act in isolation, execute the unit of work.<br/>
 						Assert the expectation.
 					</p>
 				</section>
