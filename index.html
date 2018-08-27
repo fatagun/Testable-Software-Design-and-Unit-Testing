@@ -1,0 +1,276 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Software design principles for evolving architectures</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style type="text/css"> 
+			small {text-align: left;}
+ 			img { border:none;}
+ 			.pcenter {text-align:  center;}
+ 			.reveal section img {
+ 				border:none; 
+ 				box-shadow: none; 
+ 				background: #222222; 
+ 			};
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides"> 
+				<section data-background="black">
+					<h2>Testable Software Design</h2> 
+					<p class="pcenter"><small>firat atagun</small> </p>
+				</section>
+
+				<section data-background="#013D64">
+					<h3>How to navigate</h3>
+
+					<ul>
+						<li>Use arrow keys to browse the slides</li>
+						<li>CTRL+SHIFT+F to search</li>
+						<li>Press ESC to view all slides</li>
+					</ul>
+				</section> 
+
+				<section>
+					<section>
+						<h5>What is unit testing?</h5>
+						<p>In computer programming, unit testing is a software testing method by which individual units of source code, sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures, are tested to determine whether they are fit for use.
+						<a href="https://en.wikipedia.org/wiki/Unit_testing">Wikipedia</a></p>
+					</section>
+					<section>
+						<p>Unit testing is breaking your software into pieces, and verifying their behaviour in isolation.</p>
+					</section>
+				</section>
+
+				<section data-background="#34495E">
+					<section>
+						<h5>Testable Software</h5>
+					</section>
+
+					<section> 
+						<p>Software that can be tested in isolation, verifiable, deterministic and proved to be working properly at all times.</p>
+						<p>Testable code increases cohesion and loose coupling while making software maintenance easier.</p>
+					</section>
+
+					<section>
+						<h5>Why should we invest in developing testable software?</h5>
+					</section>
+
+					<section>
+						<p>Testable software and associated tests reduces bugs in development and maintenance</p>
+					</section>
+
+					<section>
+						<p>Testing helps reduce effort and time of developing and maintaining our software.</p>
+						<p>Fact: mainintaining software takes much more time and effort than developing it.</p>
+						<p>Even though there is time and effort cost associated to creating tests, they pay of in the long time and increase trust to the software.</p>
+					</section>
+
+					<section> 
+						<p>Unit Testing your code helps improve the design of our software.</p>
+					</section>
+
+					<section>
+						<p>Unit Testing can help educate developers. It can be considered as documentation.</p>
+						<p>If a developer wants to learn about a software, reading tests can help as much as reading documentation.</p>
+
+					</section>
+
+					<section>
+						<p>Unit Testing increases the trust and confidence in our software. </p> 
+					</section> 
+				</section> 
+
+				<section>
+					<section>
+						<h5>Types of tests</h5>
+					</section>
+
+					<section>
+						<h5>What</h5>
+						<ul>
+							<li>unit</li>
+							<li>integration</li>
+							<li>component</li>
+							<li>service</li>
+						</ul>
+					</section>
+
+					<section>
+						<h5>Why</h5>
+						<ul>
+							<li>functional</li>
+							<li>acceptance</li>
+							<li>smoke</li>
+						</ul>
+					</section>
+
+					<section>
+						<h5>How</h5>
+						<ul>
+							<li>automated</li>
+							<li>manual</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h5>How to develop testable software?</h5>
+					</section> 
+
+					<section>
+						<h5>Seams</h5>
+						<p>Building blocks of software in isolation. Can be thought of context or bounded context</p>
+					</section>
+
+					<section>
+						<h5>Avoid "new"</h5>
+						<p>New is a glue. It introduces a tight coupled dependency to your software.</p>
+					</section>
+
+					<section>
+						<h5>Use interfaces</h5>
+						<p>Use interfaces define your contract and hide implementation details from your clients.</p>
+					</section>
+
+					<section>
+						<h5>Avoid Static</h5>
+						<p>How about DateTime?</p>
+					</section>
+
+					<section>
+						<h5>Object construction</h5>
+						<p>Constructors shouldn't contain any logic. Constructors should be as simple as possible. </p>
+					</section> 
+
+					<section>
+						<h5>Injectables and newables</h5>
+						<p>There are injectables and newables. Injectables are like services that implements an interface. Newables usually represents entity. Injectables can accept other injectables but shouldn't accept newables. Newables can accept other newables but shouldn't accept any injectables.</p>
+					</section>
+
+					<section>
+						<h5>Use polymorphism over conditionals</h5>
+						<p>if you see a repeating pattern of same conditionals you can extract it into polymorphic constructs. Break complex classes to smaller simpler classes.</p>
+					</section> 
+
+					<section>
+						<h5>Law of demeter</h5>
+						<p>Talk to your friends. Don't talk to strangers.</p>
+						<pre><code class="hljs">var customer = _customerService.GetCustomer(id);
+var userName = Environment.GetSecurity().GetLogin.GetUser().UserName;</code></pre>
+						<p>Except Builder pattern this is a bad practice because it violates the law of demeter and makes testing harder.</p>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h5>Characteristics of great unit tests</h5>
+					</section>
+					
+					<section>
+						<p>Short, Clean and concise</p>
+						<p>100s lines of unit test code is not good. Asserting too many expectation in a single test likely to fail.</p>
+						<p>Seperate tests increases readibility and precision. Test one expectation at a time.</p>
+					</section>
+					
+					<section>
+						<p>Expectation and assumptions</p>
+						<p>Expectation and assumptions from dependencies should be realistic.</p>
+					</section>
+
+					<section>
+						<p>Readibility</p>
+						<p>Unit tests should read like business rules.</p>
+						<p>Corporate_Account_Transfer_Succeeds.</p>
+					</section>
+
+					<section> 
+						<p>Unit tests should be easy to maintain.</p>
+					</section>
+
+					<section> 
+						<p>Unit tests should provide trust and confidence on your software.</p>
+					</section>
+				</section>
+
+				<section>
+					<h5>Arrange - Act - Assert</h5>
+					<p>
+						Arrange the subject under test.<br/>
+						Act in isolation<br/>
+						Assert the expectation.
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h5>Code Coverage</h5>
+						<p>
+							Gives you confidence over how much code has been tested. 
+						</p>
+						<p><img src="images/codecoverage.png" /></p>
+					</section>
+					
+					<section>
+						<p>
+							Well, I am panicked. How much should I cover?
+						</p>
+					</section>
+				</section>
+ 
+				<section data-background="#2E86C1">
+					<h3>The end.</h3>	
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+ 
+		</script>
+	</body>
+</html>
